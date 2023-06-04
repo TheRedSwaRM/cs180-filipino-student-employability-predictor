@@ -20,14 +20,14 @@ def predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m
     return loaded_model.predict(features)
 
 with st.form("quiz_form"):   
-    m_app = st.slider('General Appearance', 1, 5)
-    m_speak = st.slider('Manner of Speaking', 1, 5)
-    m_phys = st.slider('Physical Condition', 1, 5)
-    m_mental = st.slider('Mental Alertness', 1, 5)
-    m_conf = st.slider('Self-Confidence', 1, 5)
-    m_ideas = st.slider('Ability to Present Ideas', 1, 5)
-    m_comm = st.slider('Communication Skills', 1, 5)
-    m_perf = st.slider('Student Performance Rating', 1, 5)
+    m_app = st.slider('General Appearance', 2, 5)
+    m_speak = st.slider('Manner of Speaking', 2, 5)
+    m_phys = st.slider('Physical Condition', 2, 5)
+    m_mental = st.slider('Mental Alertness', 2, 5)
+    m_conf = st.slider('Self-Confidence', 2, 5)
+    m_ideas = st.slider('Ability to Present Ideas', 2, 5)
+    m_comm = st.slider('Communication Skills', 2, 5)
+    m_perf = st.slider('Student Performance Rating', 2, 5)
 
     if submitted := st.form_submit_button("Submit"):
         st.markdown("You are:")

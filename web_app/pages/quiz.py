@@ -7,13 +7,15 @@ For future additions, Streamlit identifies Markdown text.
 import streamlit as st
 import numpy as np
 import pickle
-from enum import Enum
 st.set_page_config(initial_sidebar_state="collapsed")
 
+# God didn't let me use enums. F*ck this sh*t.
+if 'Current Page' not in st.session_state:
+    st.session_state['Current Page'] = 0
 
 @st.cache_resource
 def load_model():
-    """ Loads model globally to lessen downtime during reloads.
+    """Loads model globally to lessen downtime during reloads.
 
     Returns:
         _scikit_model_: A saved model from previous training tests.
@@ -45,17 +47,83 @@ def predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m
 
 #============================
 # Form
+# Vaccaria: Lord forgive me for I will do something so vile, you will kill me for it.
+# GENERAL APPEARANCE          = 0
+# MANNER OF SPEAKING          = 1
+# PHYSICAL CONDITION          = 2
+# MENTAL ALERTNESS            = 3
+# SELF CONFIDENCE             = 4
+# ABILITY TO PRESENT_IDEAS    = 5
+# COMMUNICATION SKILLS        = 6
+# STUDENT PERFORMANCE RATING  = 7
 #============================
-with st.form("quiz_form"):   
-    m_app = st.slider('General Appearance', 1, 4) + 1           # Make it a 4-choice quiz section where the question assesses the person with how they present themselves in an interview
-    m_speak = st.slider('Manner of Speaking', 1, 4) + 1         # 4-choice items where they pick which dialogue option most describes them based on a prompt (can be a random prompt) 
-    m_phys = st.slider('Physical Condition', 1, 4) + 1          # Scale or self-assessment item (ask how physically fit do they see themselves as)
-    m_mental = st.slider('Mental Alertness', 1, 4) + 1          # Use this test as reference (src: https://www.jobtestprep.com/thurstone-test-mental-alertness)
-    m_conf = st.slider('Self-Confidence', 1, 4) + 1             # Self-assessment item
-    m_ideas = st.slider('Ability to Present Ideas', 1, 4) + 1   # See in brainstorming channel
-    m_comm = st.slider('Communication Skills', 1, 4) + 1        # Self-assessment of their: Tone of Voice, Posture, Body Language, Reading Comprehension, Level of Interest, Confidence, Honesty, Defensiveness (src: https://www.indeed.com/recruitment/c/info/assessing-communication-skills)
-    m_perf = st.slider('Student Performance Rating', 1, 4) + 1  # Can use a Standardized Assessment Test or just flat out ask them their GWA (like in ranges) (src: )
 
-    if submitted := st.form_submit_button("Submit"):
-        st.markdown("You are:")
-        st.write(predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf))
+def next():
+    st.session_state['Current Page'] += 1
+    
+def prev():
+    st.session_state['Current Page'] -= 1
+
+# Debug
+st.session_state
+
+# GENERAL APPEARANCE
+if st.session_state['Current Page'] == 0:
+    st.write("GENERAL APPEARANCE")
+    # m_app = st.slider('General Appearance', 1, 4) + 1           # Make it a 4-choice quiz section where the question assesses the person with how they present themselves in an interview
+    # m_speak = st.slider('Manner of Speaking', 1, 4) + 1         # 4-choice items where they pick which dialogue option most describes them based on a prompt (can be a random prompt) 
+    # m_phys = st.slider('Physical Condition', 1, 4) + 1          # Scale or self-assessment item (ask how physically fit do they see themselves as)
+    # m_mental = st.slider('Mental Alertness', 1, 4) + 1          # Use this test as reference (src: https://www.jobtestprep.com/thurstone-test-mental-alertness)
+    # m_conf = st.slider('Self-Confidence', 1, 4) + 1             # Self-assessment item
+    # m_ideas = st.slider('Ability to Present Ideas', 1, 4) + 1   # See in brainstorming channel
+    # m_comm = st.slider('Communication Skills', 1, 4) + 1        # Self-assessment of their: Tone of Voice, Posture, Body Language, Reading Comprehension, Level of Interest, Confidence, Honesty, Defensiveness (src: https://www.indeed.com/recruitment/c/info/assessing-communication-skills)
+    # m_perf = st.slider('Student Performance Rating', 1, 4) + 1  # Can use a Standardized Assessment Test or just flat out ask them their GWA (like in ranges) (src: )
+
+    next_button = st.button(label="Next",on_click=next)
+
+# MANNER OF SPEAKING
+elif st.session_state['Current Page'] == 1:
+    st.write("MANNER OF SPEAKING")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+    
+# PHYSICAL CONDITION
+elif st.session_state['Current Page'] == 2:
+    st.write("PHYSICAL CONDITION")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+    
+# MENTAL ALERTNESS
+elif st.session_state['Current Page'] == 3:
+    st.write("MENTAL ALERTNESS")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+    
+# SELF CONFIDENCE
+elif st.session_state['Current Page'] == 4:
+    st.write("SELF CONFIDENCE")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+    
+# ABILITY TO PRESENT IDEAS
+elif st.session_state['Current Page'] == 5:
+    st.write("ABILITY TO PRESENT IDEAS")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+
+# COMMUNICATION SKILLS
+elif st.session_state['Current Page'] == 6:
+    st.write("COMMUNICATION SKILLS")
+    next_button = st.button(label="Next",on_click=next)
+    back_button = st.button(label="Back",on_click=prev)
+
+
+# STUDENT PERFORMANCE RATING
+elif st.session_state['Current Page'] == 7:
+    st.write("STUDENT PERFORMANCE RATING")
+    back_button = st.button(label="Back",on_click=prev)

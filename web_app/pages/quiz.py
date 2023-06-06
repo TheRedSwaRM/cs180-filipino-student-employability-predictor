@@ -14,6 +14,8 @@ st.set_page_config(initial_sidebar_state="collapsed")
 if 'Current Page' not in st.session_state:
     st.session_state['Current Page'] = 0
 
+#TO DO: Initialize global variables here (?)
+
 @st.cache_resource
 def load_model():
     """Loads model globally to lessen downtime during reloads.
@@ -67,6 +69,7 @@ def prev():
 
 def reset_quiz():
     st.session_state['Current Page'] = 0
+    #Also reset global variables methinks
 
 # Debug
 st.session_state
@@ -85,6 +88,8 @@ if st.session_state['Current Page'] == 0:
     # item 3
     st.write("In a Group Interview, what outfit do you see yourself wearing?")
     m_app_choice_3 = st.radio(label='Choices', options=["insert another image here", "insert another image here"])
+
+    m_app = 1 + 1 # final m_app value, placeholder value before making proper equation for it
 
     # m_app = st.slider('General Appearance', 1, 4) + 1           # Make it a 4-choice quiz section where the question assesses the person with how they present themselves in an interview
     # m_speak = st.slider('Manner of Speaking', 1, 4) + 1         # 4-choice items where they pick which dialogue option most describes them based on a prompt (can be a random prompt) 
@@ -112,6 +117,8 @@ elif st.session_state['Current Page'] == 1:
     st.write("Scenario 3: {insert scenario here}, what would you say?")
     m_speak_choice_3 = st.radio(label='Choices', options=["insert any choice here", "insert another choice here"])
 
+    m_speak = 1 + 1 # final m_speak value, placeholder value before making proper equation for it
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -122,7 +129,7 @@ elif st.session_state['Current Page'] == 2:
     
     # item
     st.write("How physically fit do you see yourself?")
-    m_phys = st.select_slider(label = "Slide to the appropriate", options=("haven't been active", "could improve myself", "doing okay", "well-rounded"))
+    m_phys = st.select_slider(label = "Slide to the appropriate", options=("not active much", "could improve myself", "doing okay", "well-rounded"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -132,8 +139,16 @@ elif st.session_state['Current Page'] == 2:
 elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
 
-    st.write("Jack and Jill have 44 cookies together. Jack has three times more cookies than Jill, how many cookies does he have?") # need to change this question
-    m_mental = st.radio(Label="Choices", options=("yes", "no", "maybe", "so"))
+    st.write("Jack and Jill have 44 cookies together. Jack has three times more cookies than Jill, how many cookies does he have?") # need to rephrase/change the numbers of this question
+    m_mental_choice_1 = st.radio(label="Choices", options=["yes", "no", "maybe", "so"])
+
+    st.write("Which number can replace the question mark? 36 | 30 | 28 | 20 | 10 | ?") # need to rephrase/change the numbers of this question
+    m_mental_choice_2 = st.radio(label="Choices", options=["yes", "o", "maybe", "so"])
+
+    st.write("SPITE|RESPITE: The meanings of these words are...") # need to rephrase/change the numbers of this question
+    m_mental_choice_3 = st.radio(label="Choices", options=["yes", "no", "aybe", "so"])
+
+    m_mental = 1 + 1 # final m_mental value, placeholder value before making proper equation for it
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -147,7 +162,7 @@ elif st.session_state['Current Page'] == 4:
     
     # item
     st.write("How confident do you see yourself?")
-    m_phys = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "YEEEEEEEEEAAAAAAAAAAAH"))
+    m_conf = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "YEEEEEEEEEAAAAAAAAAAAH"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -156,6 +171,18 @@ elif st.session_state['Current Page'] == 4:
 # ABILITY TO PRESENT IDEAS
 elif st.session_state['Current Page'] == 5:
     st.write("ABILITY TO PRESENT IDEAS")
+
+    st.write("Which of the following is an essential component of a well-structured presentation?")
+    m_ideas_choice_1 = st.radio(label="Choices", options = ["Clear introduction", "Engaging visual aids", "Concise conclusion", "All of the above"])
+
+    st.write("What is the recommended way to maintain audience engagement during a presentation?")
+    m_ideas_choice_2 = st.radio(label="Choices", options = ["Use interactive activities", "Incorporate storytelling techniques", "Ask thought-provoking questions", "All of the above"])
+
+    st.write("You notice that some audience members appear disengaged during your presentation. What should you do?")
+    m_ideas_choice_3 = st.radio(label="Choices", options = ["Increase your volume and speak louder", "Use more complex technical terms to grab their attention", "Pause and ask a question to encourage participation", "Ignore them and continue with your presentation"])
+
+    m_ideas = 1 + 1 #temp values muna, will polish later
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -163,6 +190,15 @@ elif st.session_state['Current Page'] == 5:
 # COMMUNICATION SKILLS
 elif st.session_state['Current Page'] == 6:
     st.write("COMMUNICATION SKILLS")
+
+    m_comm_choice_1 = st.radio(label="Which of the following is an essential component of effective communication?", options=["Active listening", "Speaking slowly", "Superior vocabulary", "Using complex vocabulary"])
+
+    m_comm_choice_2 = st.radio(label="How would you handle a situation where you receive an email with unclear instructions?", options=["Ignore the email and wait for clarification.", "Reply with your best guess.", "Seek clarification by asking specific questions.", "Reply with any response to buy time."])
+
+    m_comm_choice_3 = st.radio(label="How would you handle a disagreement with a colleague during a team meeting?", options=["Assert your opinion.", "Keep listening and avoid conflict.", "Listen to their perspective and express your viewpoint respectfully.", "Tell the issue to a supervisor."])
+
+    m_comm = 1 + 1
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -170,6 +206,10 @@ elif st.session_state['Current Page'] == 6:
 # STUDENT PERFORMANCE RATING
 elif st.session_state['Current Page'] == 7:
     st.write("STUDENT PERFORMANCE RATING")
+
+    st.write("According to your University/School Record, what's your current GWA?")
+    m_phys = st.select_slider(label = "Slide to the range that fits you", options=("3.00-2.50", "2.50-2.00", "2.00-1.50", "1.50-1.00")) #Note: need to find a better range OR a test something else for this
+
     back_button = st.button(label="Back",on_click=prev)
     submit_button = st.button(label="Submit", on_click=next)
 
@@ -179,4 +219,5 @@ elif st.session_state['Current Page'] == 8:
     # results = predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf)
     # "pretend" to load here
     # if-else statement showing the appropriate response wherein if employable, say something like "Congratulations! Looks like you have what it takes to get a job! Omi job!"
+    reset_button = st.button(label="Restart Quiz", on_click=reset_quiz)
     pass

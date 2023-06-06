@@ -133,7 +133,7 @@ elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
 
     st.write("Jack and Jill have 44 cookies together. Jack has three times more cookies than Jill, how many cookies does he have?") # need to change this question
-    m_mental = st.radio(Label="Choices", options=["yes", "no", "maybe", "so"])
+    m_mental = st.radio(Label="Choices", options=("yes", "no", "maybe", "so"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)

@@ -10,6 +10,7 @@ import pickle
 st.set_page_config(initial_sidebar_state="collapsed")
 
 # God didn't let me use enums. F*ck this sh*t.
+# No. We can't set it as 0 outside. Else it breaks.
 if 'Current Page' not in st.session_state:
     st.session_state['Current Page'] = 0
 
@@ -63,6 +64,9 @@ def next():
     
 def prev():
     st.session_state['Current Page'] -= 1
+
+def reset_quiz():
+    st.session_state['Current Page'] = 0
 
 # Debug
 st.session_state

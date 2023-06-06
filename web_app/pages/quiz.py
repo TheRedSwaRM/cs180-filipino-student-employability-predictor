@@ -58,5 +58,4 @@ with st.form("quiz_form"):
 
     if submitted := st.form_submit_button("Submit"):
         st.markdown("You are:")
-        st.write(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf)
         st.write(predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf))

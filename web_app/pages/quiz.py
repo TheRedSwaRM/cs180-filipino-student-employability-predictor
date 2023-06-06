@@ -74,6 +74,18 @@ st.session_state
 # GENERAL APPEARANCE
 if st.session_state['Current Page'] == 0:
     st.write("GENERAL APPEARANCE")
+    
+    # item 1
+    st.write("In a Formal Interview, what outfit do you see yourself wearing?")
+    m_app_choice_1 = st.radio(label='Choices', options=["insert image here", "insert another image here"])
+    # item 2
+    st.write("In a Casual Interview (say, at a coffee shop), what outfit do you see yourself wearing?")
+    m_app_choice_2 = st.radio(label='Choices', options=["insert other image here", "insert another image here"])
+
+    # item 3
+    st.write("In a Group Interview, what outfit do you see yourself wearing?")
+    m_app_choice_3 = st.radio(label='Choices', options=["insert another image here", "insert another image here"])
+
     # m_app = st.slider('General Appearance', 1, 4) + 1           # Make it a 4-choice quiz section where the question assesses the person with how they present themselves in an interview
     # m_speak = st.slider('Manner of Speaking', 1, 4) + 1         # 4-choice items where they pick which dialogue option most describes them based on a prompt (can be a random prompt) 
     # m_phys = st.slider('Physical Condition', 1, 4) + 1          # Scale or self-assessment item (ask how physically fit do they see themselves as)
@@ -88,6 +100,18 @@ if st.session_state['Current Page'] == 0:
 # MANNER OF SPEAKING
 elif st.session_state['Current Page'] == 1:
     st.write("MANNER OF SPEAKING")
+    # item 1
+    st.write("Scenario 1: {insert scenario here}, what would you say?")
+    m_speak_choice_1 = st.radio(label='Choices', options=["insert choice here", "insert another choice here"])
+    
+    # item 2
+    st.write("Scenario 2: {insert scenario here}, what would you say?")
+    m_speak_choice_2 = st.radio(label='Choices', options=["insert a choice here", "insert another choice here"])
+    
+    # item 3
+    st.write("Scenario 3: {insert scenario here}, what would you say?")
+    m_speak_choice_3 = st.radio(label='Choices', options=["insert any choice here", "insert another choice here"])
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -95,6 +119,11 @@ elif st.session_state['Current Page'] == 1:
 # PHYSICAL CONDITION
 elif st.session_state['Current Page'] == 2:
     st.write("PHYSICAL CONDITION")
+    
+    # item
+    st.write("How physically fit do you see yourself?")
+    m_phys = st.select_slider(label = "Slide to the appropriate", options=("haven't been active", "could improve myself", "doing okay", "well-rounded"))
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -102,13 +131,24 @@ elif st.session_state['Current Page'] == 2:
 # MENTAL ALERTNESS
 elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
+
+    st.write("Jack and Jill have 44 cookies together. Jack has three times more cookies than Jill, how many cookies does he have?") # need to change this question
+    m_mental = st.radio(Label="Choices", options=["yes", "no", "maybe", "so"])
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
+
+    st.write("Questions based on https://www.jobtestprep.com/thurstone-test-mental-alertness")
 
     
 # SELF CONFIDENCE
 elif st.session_state['Current Page'] == 4:
     st.write("SELF CONFIDENCE")
+    
+    # item
+    st.write("How confident do you see yourself?")
+    m_phys = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "YEEEEEEEEEAAAAAAAAAAAH"))
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
@@ -131,3 +171,12 @@ elif st.session_state['Current Page'] == 6:
 elif st.session_state['Current Page'] == 7:
     st.write("STUDENT PERFORMANCE RATING")
     back_button = st.button(label="Back",on_click=prev)
+    submit_button = st.button(label="Submit", on_click=next)
+
+elif st.session_state['Current Page'] == 8:
+    st.write("YOUR RESULTS:")
+    # predict here
+    # results = predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf)
+    # "pretend" to load here
+    # if-else statement showing the appropriate response wherein if employable, say something like "Congratulations! Looks like you have what it takes to get a job! Omi job!"
+    pass

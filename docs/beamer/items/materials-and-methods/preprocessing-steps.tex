@@ -1,0 +1,33 @@
+\subsection{Preprocessing steps}
+\begin{frame}
+\frametitle{\subsecname}
+	\begin{itemize}
+		\item Before performing the MLP algorithm into our data set, we should consider normalizing and cleaning the data set first to achieve best results.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Data cleaning}
+	\begin{itemize}
+		\item Since the data set is well-structured from the start (i.e., no \texttt{null} entries), all we need to do is to remove the \texttt{Name of Student} and \texttt{CLASS} columns in our data set prior to splitting the data set into \texttt{train} and \texttt{test} sets. 
+\begin{minted}{python}
+data = data.drop("Name of Student", axis=1)
+x = data.drop('CLASS', axis = 1)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Data normalization}
+	\begin{itemize}
+		\item Since we are using the MLP algorithm, we use \texttt{MinMaxScaler} with \texttt{tanh} activation to normalize our data set.
+\begin{minted}{python}
+#Normalize train and test sets for MLP
+from sklearn.preprocessing import MinMaxScaler
+
+#TANH activation
+scaler = MinMaxScaler(feature_range=(-1,1))
+\end{minted}
+		\item We will use \texttt{scaler} later on the transformation of our \texttt{train} and \texttt{test} sets.
+	\end{itemize}
+\end{frame}

@@ -1,0 +1,63 @@
+% Dynamically named LaTeX content registers
+\global\def\myregister#1#2#3{% {Basename}{Postfix}{Content}
+  \def\tmp{\global\def}
+  \expandafter\tmp\csname #1#2\endcsname{#3}}
+
+% This is for temporary register storage, since we may exceed more than 9 parameters
+\global\def\foo#1#2#3#4#5#6#7#8#9{%
+    \global\def\tempa{#1}%
+    \global\def\tempb{#2}%
+    \global\def\tempc{#3}%
+    \global\def\tempd{#4}%
+    \global\def\tempe{#5}%
+    \global\def\tempf{#6}%
+    \global\def\tempg{#7}%
+    \global\def\temph{#8}%
+    \global\def\tempi{#9}%
+}
+
+% Completely hide content
+\newcommand{\hidden}[1]{%
+    \hphantom{\vphantom{#1}}%
+}
+
+% Wide figure block \wfig[width]{filename, caption}
+\newcommand{\wfig}[3][1]{\begin{figure}[H]%
+    \centering%
+    \includegraphics[width=#1\linewidth]{resources/#2}%
+    \caption{\centering {#3}}%
+    \label{fig:#2}%
+\end{figure}}
+
+% Wide figure block ONLY \wfigo[width]{filename}
+\newcommand{\wfigo}[2][1]{\begin{figure}[H]%
+    \centering%
+    \includegraphics[width=#1\linewidth]{resources/#2}%
+    \label{fig:#2}%
+\end{figure}}
+
+
+% Answer divider \ans{text}
+\newcommand{\ANSWER}{%
+    \textbf{ANSWER:} % style as desired
+}
+
+% Code block environment
+\DeclareFloatingEnvironment[name={Code Block}]{cb}
+\crefname{cb}{Code Block}{Code Blocks}
+
+% Full imported code block
+\newcommand{\cbcode}[3]{\begin{cb}[H]%
+    \centering%
+    \inputminted[breaklines, linenos, xleftmargin=\dimexpr \paperwidth-\textwidth \relax, fontsize=\footnotesize]{#2}{resources/#1}%
+    \caption{\centering {#3}}%
+    \label{cb:#1}%
+\end{cb}}
+
+% Truncated code block
+\newcommand{\cbcodet}[5]{\begin{cb}[H]%
+    \centering%
+    \inputminted[breaklines, linenos, xleftmargin=\dimexpr \paperwidth-\textwidth \relax, fontsize=\footnotesize, firstline=#3, lastline=#4]{#2}{resources/#1}%
+    \caption{\centering {#5}}%
+    \label{cb:#1}%
+\end{cb}}

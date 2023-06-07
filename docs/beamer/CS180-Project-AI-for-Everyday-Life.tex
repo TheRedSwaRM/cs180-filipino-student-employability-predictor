@@ -1,0 +1,83 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{varwidth}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage[capitalize, noabbrev, nameinlink]{cleveref}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{multicol}
+\usepackage{xfp}
+\usepackage{newfloat}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{currfile}
+\usepackage{import}
+\usepackage{multirow}
+\usepackage{tkz-graph}
+% \addbibresource{bibliography.bib}
+
+\usetheme{AnnArbor}
+
+% Set paragraph indent to 0
+\setlength\parindent{0pt}
+
+% Set default table margin to 1.5
+\def\arraystretch{1.5}
+
+% Import new commands
+\input{newcommands}
+\input{customcommands}
+
+% Resolve underfull horizontal boxes
+\sloppy
+
+% Document proper
+\setbeamercovered{transparent}
+\begin{document}
+	\author[Team \#14]{
+		Team \#14
+		\begin{center}
+   	 \line(1,0){0.5\linewidth}
+		\end{center}
+		{\scriptsize%
+		Ralf Michael Balatibat, 2020-11685\\
+		Stephen Mary Encarnacion, 2020-02988\\
+		Michael Sean Brian Omisol, 2020-10660\\
+		Aaron Jude Tanael, 2020-04275\\
+		}
+	}
+	\title{CS 180}
+	\subtitle{Filipino Student Employability Predictor using Multilayer Perceptrons}
+	\logo{\includegraphics[height=1cm]{resources/logo}}
+	\institute[U.P. Diliman]{University of the Philippines Diliman}
+	\date{June 9, 2023}
+
+	\begin{frame}
+		\maketitle
+	\end{frame}
+	
+	\begin{frame}
+	\frametitle{Presentation Agenda}
+	\tableofcontents
+	\end{frame}
+
+	\input{items/introduction}
+	\input{items/materials-and-methods}
+	\input{items/results}
+	\input{items/discussion-QA}
+
+	\begin{frame}
+	\begin{center}
+	Thank you!
+	\end{center}
+	\end{frame}
+
+\end{document}

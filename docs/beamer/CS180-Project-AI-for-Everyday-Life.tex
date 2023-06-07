@@ -39,6 +39,9 @@
 % Resolve underfull horizontal boxes
 \sloppy
 
+% Set TOC depth to 1
+\setcounter{tocdepth}{1}
+
 % Document proper
 \setbeamercovered{transparent}
 \begin{document}
@@ -69,10 +72,10 @@
 	\tableofcontents
 	\end{frame}
 
-	\input{items/introduction}
-	\input{items/materials-and-methods}
-	\input{items/results}
-	\input{items/discussion-QA}
+	\input{items/introduction.tex}
+	\input{items/materials-and-methods.tex}
+	\input{items/results.tex}
+	\input{items/discussion-QA.tex}
 
 	\begin{frame}
 	\begin{center}

@@ -11,6 +11,7 @@ Thanks. -Omi
 import streamlit as st
 import numpy as np
 import pickle
+import math
 st.set_page_config(initial_sidebar_state="collapsed")
 
 # God didn't let me use enums. F*ck this sh*t.
@@ -53,7 +54,7 @@ def load_model():
     return pickle.load(open("files/mlp_model.sav", 'rb'))
 
 loaded_model = load_model()
-
+# loaded_scaler = insert saved scaler here
 
 def predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf):
     """Predicts the answers given 7 integer inputs, outputting a string that is either
@@ -171,7 +172,7 @@ if st.session_state['Current Page'] == 0:
         case "Casual Wear":
             st.session_state['Scores'][0] += 3
     # Average the answers
-    st.session_state['Scores'][0] /= 3
+    st.session_state['Scores'][0] = math.ceil(st.session_state['Scores'][0] / 3)
     
     next_button = st.button(label="Next",on_click=next)
     
@@ -190,7 +191,6 @@ elif st.session_state['Current Page'] == 1:
             ]) # best to worst (by index): 0, 1, 2
     
     # item 2
-    st.write("Scenario 2: {insert scenario here}, what would you say?")
     m_speak_choice_2 = st.radio(
         label='You are in a group discussion, and a team member continuously interrupts and dominates the conversation. How would you respond?',
         options=[
@@ -235,7 +235,7 @@ elif st.session_state['Current Page'] == 1:
         case "I think your idea is completely off-track, the project's goal is to...":
             st.session_state['Scores'][1] += 3
     # Average the answers
-    st.session_state['Scores'][1] /= 3
+    st.session_state['Scores'][1] = math.ceil(st.session_state['Scores'][1] / 3)
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -373,7 +373,7 @@ elif st.session_state['Current Page'] == 5:
     m_ideas_choice_2 = st.radio(
         label="Choices",
         options = [
-            "Use interactive activities", 
+            "Use exciting and colorful words", 
             "Incorporate storytelling techniques", 
             "Be controversial with your ideas", 
             "None of the above"
@@ -495,6 +495,17 @@ elif st.session_state['Current Page'] == 8:
         st.session_state['Scores'][6],
         st.session_state['Scores'][7])
     results
+    if results == 0:
+        # st.header("Looks like we need to work on ourselves a bit more")
+        # st.divider()
+        # st.write()
+        pass
+        
+    elif results == 1:
+        # st.header("Congratulations!")
+        # st.divider()
+        # st.write()
+        pass
     # "pretend" to load here
     # if-else statement showing the appropriate response wherein if employable, say something like "Congratulations! Looks like you have what it takes to get a job! Omi job!"
     reset_button = st.button(label="Restart Quiz", on_click=reset_quiz)

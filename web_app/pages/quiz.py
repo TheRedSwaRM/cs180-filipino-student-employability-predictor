@@ -15,6 +15,14 @@ if 'Current Page' not in st.session_state:
     st.session_state['Current Page'] = 0
 
 #TO DO: Initialize global variables here (?)
+m_app = 3
+m_speak = 3
+m_phys = 3
+m_mental = 3
+m_conf = 3
+m_ideas = 3
+m_comm = 3
+m_perf = 3
 
 @st.cache_resource
 def load_model():
@@ -78,19 +86,30 @@ st.session_state
 if st.session_state['Current Page'] == 0:
     st.write("GENERAL APPEARANCE")
     
-    # item 1
-    st.write("In a Formal Interview, what outfit do you see yourself wearing?")
-    m_app_choice_1 = st.radio(label='Choices', options=["insert image here", "insert another image here"])
-    # item 2
-    st.write("In a Casual Interview (say, at a coffee shop), what outfit do you see yourself wearing?")
-    m_app_choice_2 = st.radio(label='Choices', options=["insert other image here", "insert another image here"])
+    st.info("For clothing references, please see the images on the right")
+    app_col1, app_col2, app_col3 = st.columns([0.40, 0.3,0.3])
 
-    # item 3
-    st.write("In a Group Interview, what outfit do you see yourself wearing?")
-    m_app_choice_3 = st.radio(label='Choices', options=["insert another image here", "insert another image here"])
+    with app_col1:
+        # item 1
+        st.write("What outfit do you see yourself wearing in:")
+        m_app_choice_1 = st.radio(label="A Formal Interview, where the company's employees usually wear semi-formal attire", options=["Semi-Formal Wear", "Business Casual Wear", "Formal Wear"])
+    
+        # item 2
+        m_app_choice_2 = st.radio(label='In a Casual Interview at a coffee shop', options=["Business Casual Wear", "Semi-Formal Wear", "Formal Wear"])
+
+        # item 3
+        m_app_choice_3 = st.radio(label="In a Group Interview, where the company's dress code is casual", options=["Casual Wear", "Semi-Formal Wear", "Business Casual Wear"])
+
+    with app_col2:
+        img1 = st.image("files/formal_clothing.png", width = 200, caption="Formal Wear")
+        img2 = st.image("files/semiformal_clothing.png", width = 200, caption="Semi-Formal Wear")
+
+    with app_col3:
+        img3 = st.image("files/businesscasual_clothing.png", width = 200, caption="Business Casual Wear")
+        img4 = st.image("files/casual_clothing.png", width = 200, caption="Casual Wear")
 
     m_app = 1 + 1 # final m_app value, placeholder value before making proper equation for it
-
+    # print(m_app_choice_1, m_app_choice_2, m_app_choice_3)
     # m_app = st.slider('General Appearance', 1, 4) + 1           # Make it a 4-choice quiz section where the question assesses the person with how they present themselves in an interview
     # m_speak = st.slider('Manner of Speaking', 1, 4) + 1         # 4-choice items where they pick which dialogue option most describes them based on a prompt (can be a random prompt) 
     # m_phys = st.slider('Physical Condition', 1, 4) + 1          # Scale or self-assessment item (ask how physically fit do they see themselves as)
@@ -102,20 +121,20 @@ if st.session_state['Current Page'] == 0:
 
     next_button = st.button(label="Next",on_click=next)
 
+    # TO DO: insert credits for images used here  
+
 # MANNER OF SPEAKING
 elif st.session_state['Current Page'] == 1:
     st.write("MANNER OF SPEAKING")
     # item 1
-    st.write("Scenario 1: {insert scenario here}, what would you say?")
-    m_speak_choice_1 = st.radio(label='Choices', options=["insert choice here", "insert another choice here"])
+    m_speak_choice_1 = st.radio(label="You are addressing a customer complaint as a customer service representative, choose the most appropriate response", options=["Sorry for the inconvenience caused. We'll do our best to resolve the issue shortly.", "It's not our fault. You should have read the terms and conditions more carefully.", "That's not my department. You need to speak with someone else."])
     
     # item 2
     st.write("Scenario 2: {insert scenario here}, what would you say?")
-    m_speak_choice_2 = st.radio(label='Choices', options=["insert a choice here", "insert another choice here"])
+    m_speak_choice_2 = st.radio(label='You are in a group discussion, and a team member continuously interrupts and dominates the conversation. How would you respond?', options=["Say: Excuse me, but you're talking too much. Let others have a chance to speak.",  "Say: I appreciate your enthusiasm, but it would be beneficial to hear other perspectives as well.", "(Let them continue what they're saying)"])
     
     # item 3
-    st.write("Scenario 3: {insert scenario here}, what would you say?")
-    m_speak_choice_3 = st.radio(label='Choices', options=["insert any choice here", "insert another choice here"])
+    m_speak_choice_3 = st.radio(label='You are in a team meeting and a colleague presents an idea that you strongly disagree with. What would you say?', options=["I think that idea won't work because...", "I appreciate your perspective, although I have different viewpoint on this because...", "I think your idea is completely off-track, the project's goal is to..."])
 
     m_speak = 1 + 1 # final m_speak value, placeholder value before making proper equation for it
 
@@ -129,7 +148,7 @@ elif st.session_state['Current Page'] == 2:
     
     # item
     st.write("How physically fit do you see yourself?")
-    m_phys = st.select_slider(label = "Slide to the appropriate", options=("not active much", "could improve myself", "doing okay", "well-rounded"))
+    m_phys = st.select_slider(label = "Slide to the appropriate", options=("not active much", "I could improve myself", "pretty okay", "fit!"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -162,7 +181,7 @@ elif st.session_state['Current Page'] == 4:
     
     # item
     st.write("How confident do you see yourself?")
-    m_conf = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "YEEEEEEEEEAAAAAAAAAAAH"))
+    m_conf = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "Definitely!"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)

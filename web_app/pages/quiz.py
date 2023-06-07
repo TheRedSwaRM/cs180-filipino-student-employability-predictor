@@ -97,12 +97,22 @@ def prev():
 
 def reset_quiz():
     st.session_state['Current Page'] = 0
+    st.session_state['Scores'] = [
+        0,  #m_app
+        0,  #m_speak
+        0,  #m_phys
+        0,  #m_mental
+        0,  #m_conf
+        0,  #m_ideas
+        0,  #m_comm
+        0   #m_perf
+    ]
     #Also reset global variables methinks
 
 # Debug
-st.session_state
+# st.session_state
 
-# GENERAL APPEARANCE
+# GENERAL APPEARANCE - 0
 if st.session_state['Current Page'] == 0:
     st.write("GENERAL APPEARANCE")
     
@@ -167,7 +177,7 @@ if st.session_state['Current Page'] == 0:
     
     # TO DO: insert credits for images used here  
 
-# MANNER OF SPEAKING
+# MANNER OF SPEAKING - 1
 elif st.session_state['Current Page'] == 1:
     st.write("MANNER OF SPEAKING")
     # item 1
@@ -230,41 +240,91 @@ elif st.session_state['Current Page'] == 1:
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
-# PHYSICAL CONDITION
+# PHYSICAL CONDITION - 2
 elif st.session_state['Current Page'] == 2:
     st.write("PHYSICAL CONDITION")
     
     # item
     st.write("How physically fit do you see yourself?")
-    m_phys = st.select_slider(label = "Slide to the appropriate", options=("not active much", "I could improve myself", "pretty okay", "fit!"))
+    m_phys = st.select_slider(
+        label = "Slide to the appropriate", 
+        options = (
+            "not active much", 
+            "I could improve myself", 
+            "pretty okay", 
+            "fit!"
+            )
+        )
+    # God abandoned me this way.
+    st.session_state['Scores'][2] = 0
+    match m_phys:
+        case "not active much":
+            st.session_state['Scores'][2] = 2
+        case "I could improve myself":
+            st.session_state['Scores'][2] = 3
+        case "pretty okay":
+            st.session_state['Scores'][2] = 4
+        case "fit!":
+            st.session_state['Scores'][2] = 5
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
  
-# MENTAL ALERTNESS
+# MENTAL ALERTNESS - 3
 elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
 
     st.write("Alice and Bob have 420 cookies together. Bob has three times more cookies than Alice, how many cookies does he have?")
-    m_mental_choice_1 = st.radio(label="Choices", options=["105", "210", "315", "None of These"]) # answer: 315
+    m_mental_choice_1 = st.radio(
+        label = "Choices",
+        options = [
+            "105", 
+            "210",
+            "315",
+            "None of These"
+            ]) # answer: 315
 
     st.write("Observe the pattern below:")
     st.info("64 | 60 | 58 | 52 | 44 | X")
     st.write("Which number can replace your X?")
-    m_mental_choice_2 = st.radio(label="Choices", options=["36", "30", "40", "28"]) # answer: 30
+    m_mental_choice_2 = st.radio(
+        label="Choices", 
+        options=[
+            "36", 
+            "30", 
+            "40", 
+            "28"
+            ]) # answer: 30
 
     st.info('"DESPITE" | "IN SPITE OF"')
     st.write("The use of these phrases are...")
-    m_mental_choice_3 = st.radio(label="Choices", options=["Opposite", "Similar", "Unrelated to Each Other", "None of the Above"]) # answer: Similar
+    m_mental_choice_3 = st.radio(
+        label = "Choices", 
+        options = [
+            "Opposite", 
+            "Similar", 
+            "Unrelated to Each Other", 
+            "None of the Above"
+            ]) # answer: Similar
 
-    m_mental = 1 + 1 # final m_mental value, placeholder value before making proper equation for it
-
+    # God abandoned me this way.
+    st.session_state['Scores'][3] = 2
+    # First Answer
+    if m_mental_choice_1 == "315":
+        st.session_state['Scores'][3] += 1
+    # Second Answer
+    if m_mental_choice_2 == "30":
+        st.session_state['Scores'][3] += 1
+    # Third Answer
+    if m_mental_choice_3 == "Similar":
+        st.session_state['Scores'][3] += 1
+    
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
     # st.write("Questions based on https://www.jobtestprep.com/thurstone-test-mental-alertness") # just realized this would also reveal the answers KEK
  
-# SELF CONFIDENCE
+# SELF CONFIDENCE - 4
 elif st.session_state['Current Page'] == 4:
     st.write("SELF CONFIDENCE")
     
@@ -280,10 +340,22 @@ elif st.session_state['Current Page'] == 4:
             )
         )
 
+    # God abandoned me this way.
+    st.session_state['Scores'][4] = 0
+    match m_conf:
+        case "I wish I am":
+            st.session_state['Scores'][4] = 2
+        case "Somewhat":
+            st.session_state['Scores'][4] = 3
+        case "Pretty much!":
+            st.session_state['Scores'][4] = 4
+        case "Definitely!":
+            st.session_state['Scores'][4] = 5
+
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
-# ABILITY TO PRESENT IDEAS
+# ABILITY TO PRESENT IDEAS - 5 
 elif st.session_state['Current Page'] == 5:
     st.write("ABILITY TO PRESENT IDEAS")
 
@@ -317,12 +389,22 @@ elif st.session_state['Current Page'] == 5:
             "Ignore them and continue with your presentation for those who are actually listening"
             ]) # Answer: Pause and ask a question to encourage participation
 
-    m_ideas = 1 + 1 #temp values muna, will polish later
+    # God abandoned me this way.
+    st.session_state['Scores'][5] = 2
+    # First Answer
+    if m_ideas_choice_1 == "All of the above":
+        st.session_state['Scores'][5] += 1
+    # Second Answer
+    if m_ideas_choice_2 == "Incorporate storytelling techniques":
+        st.session_state['Scores'][5] += 1
+    # Third Answer
+    if m_ideas_choice_3 == "Pause and ask a question to encourage participation":
+        st.session_state['Scores'][5] += 1
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
-# COMMUNICATION SKILLS
+# COMMUNICATION SKILLS - 6
 elif st.session_state['Current Page'] == 6:
     st.write("COMMUNICATION SKILLS")
 
@@ -353,12 +435,22 @@ elif st.session_state['Current Page'] == 6:
             "Tell the issue to a supervisor."
             ]) # Answer:  "Listen to their perspective and express your viewpoint respectfully."
 
-    m_comm = 1 + 1
+    # God abandoned me this way.
+    st.session_state['Scores'][6] = 2
+    # First Answer
+    if m_comm_choice_1 == "Active listening":
+        st.session_state['Scores'][6] += 1
+    # Second Answer
+    if m_comm_choice_2 == "Seek clarification by asking specific questions.":
+        st.session_state['Scores'][6] += 1
+    # Third Answer
+    if m_comm_choice_3 == "Listen to their perspective and express your viewpoint respectfully.":
+        st.session_state['Scores'][6] += 1
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
-# STUDENT PERFORMANCE RATING
+# STUDENT PERFORMANCE RATING - 7
 elif st.session_state['Current Page'] == 7:
     st.write("STUDENT PERFORMANCE RATING")
 
@@ -366,20 +458,43 @@ elif st.session_state['Current Page'] == 7:
     m_phys = st.select_slider(
         label = "Slide to the range that fits you", 
         options = (
+            "below 3.00",
             "3.00-2.50", 
             "2.50-1.50", 
             "1.50-1.00"
             )
         )
 
+    # God abandoned me this way.
+    st.session_state['Scores'][7] = 0
+    match m_phys:
+        case "below 3.00":
+            st.session_state['Scores'][7] = 2
+        case "3.00-2.50":
+            st.session_state['Scores'][7] = 3
+        case "2.50-1.50":
+            st.session_state['Scores'][7] = 4
+        case "1.50-1.00":
+            st.session_state['Scores'][7] = 5
+
     back_button = st.button(label="Back",on_click=prev)
     submit_button = st.button(label="Submit", on_click=next)
 
-# RESULTS
+# RESULTS - 8
 elif st.session_state['Current Page'] == 8:
     st.write("YOUR RESULTS:")
     # predict here
-    # results = predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf)
+    st.session_state
+    results = predict_answers(
+        st.session_state['Scores'][0],
+        st.session_state['Scores'][1],
+        st.session_state['Scores'][2],
+        st.session_state['Scores'][3],
+        st.session_state['Scores'][4],
+        st.session_state['Scores'][5],
+        st.session_state['Scores'][6],
+        st.session_state['Scores'][7])
+    results
     # "pretend" to load here
     # if-else statement showing the appropriate response wherein if employable, say something like "Congratulations! Looks like you have what it takes to get a job! Omi job!"
     reset_button = st.button(label="Restart Quiz", on_click=reset_quiz)

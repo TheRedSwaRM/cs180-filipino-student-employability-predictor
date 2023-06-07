@@ -158,21 +158,24 @@ elif st.session_state['Current Page'] == 2:
 elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
 
-    st.write("Jack and Jill have 44 cookies together. Jack has three times more cookies than Jill, how many cookies does he have?") # need to rephrase/change the numbers of this question
-    m_mental_choice_1 = st.radio(label="Choices", options=["yes", "no", "maybe", "so"])
+    st.write("Alice and Bob have 420 cookies together. Bob has three times more cookies than Alice, how many cookies does he have?")
+    m_mental_choice_1 = st.radio(label="Choices", options=["105", "210", "315", "None of These"])
 
-    st.write("Which number can replace the question mark? 36 | 30 | 28 | 20 | 10 | ?") # need to rephrase/change the numbers of this question
-    m_mental_choice_2 = st.radio(label="Choices", options=["yes", "o", "maybe", "so"])
+    st.write("Observe the pattern below:")
+    st.info("64 | 60 | 58 | 52 | 44 | X")
+    st.write("Which number can replace your X?")
+    m_mental_choice_2 = st.radio(label="Choices", options=["36", "30", "40", "28"])
 
-    st.write("SPITE|RESPITE: The meanings of these words are...") # need to rephrase/change the numbers of this question
-    m_mental_choice_3 = st.radio(label="Choices", options=["yes", "no", "aybe", "so"])
+    st.info('"DESPITE" | "IN SPITE OF"')
+    st.write("The use of these phrases are...")
+    m_mental_choice_3 = st.radio(label="Choices", options=["Opposite", "Similar", "Unrelated to Each Other", "None of the Above"])
 
     m_mental = 1 + 1 # final m_mental value, placeholder value before making proper equation for it
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
 
-    st.write("Questions based on https://www.jobtestprep.com/thurstone-test-mental-alertness")
+    # st.write("Questions based on https://www.jobtestprep.com/thurstone-test-mental-alertness") # just realized this would also reveal the answers KEK
 
     
 # SELF CONFIDENCE

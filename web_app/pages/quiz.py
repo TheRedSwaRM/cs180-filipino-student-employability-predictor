@@ -92,13 +92,13 @@ if st.session_state['Current Page'] == 0:
     with app_col1:
         # item 1
         st.write("What outfit do you see yourself wearing in:")
-        m_app_choice_1 = st.radio(label="A Formal Interview, where the company's employees usually wear semi-formal attire", options=["Semi-Formal Wear", "Business Casual Wear", "Formal Wear"])
+        m_app_choice_1 = st.radio(label="A Formal Interview, where the company's employees usually wear semi-formal attire", options=["Semi-Formal Wear", "Business Casual Wear", "Formal Wear"]) # Best answers (from best to worst): Formal Wear, Semi-Formal Wear, Business Casual
     
         # item 2
-        m_app_choice_2 = st.radio(label='In a Casual Interview at a coffee shop', options=["Business Casual Wear", "Semi-Formal Wear", "Formal Wear"])
+        m_app_choice_2 = st.radio(label='In a Casual Interview at a coffee shop, that your interviewer will wear something Smart Casual', options=["Business Casual Wear", "Casual Wear", "Formal Wear"]) # Best to Worst Answers: Business Casual Wear, Casual Wear, Formal Wear
 
         # item 3
-        m_app_choice_3 = st.radio(label="In a Group Interview, where the company's dress code is casual", options=["Casual Wear", "Semi-Formal Wear", "Business Casual Wear"])
+        m_app_choice_3 = st.radio(label="In a Group Interview, where the company's dress code is casual", options=["Casual Wear", "Semi-Formal Wear", "Business Casual Wear"]) # Best to Worst Answers: Business Casual Wear, Semi-Formal Wear, Casual Wear
 
     with app_col2:
         img1 = st.image("files/formal_clothing.png", width = 200, caption="Formal Wear")

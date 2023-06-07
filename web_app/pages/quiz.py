@@ -127,14 +127,14 @@ if st.session_state['Current Page'] == 0:
 elif st.session_state['Current Page'] == 1:
     st.write("MANNER OF SPEAKING")
     # item 1
-    m_speak_choice_1 = st.radio(label="You are addressing a customer complaint as a customer service representative, choose the most appropriate response", options=["Sorry for the inconvenience caused. We'll do our best to resolve the issue shortly.", "It's not our fault. You should have read the terms and conditions more carefully.", "That's not my department. You need to speak with someone else."])
+    m_speak_choice_1 = st.radio(label="You are addressing a customer complaint as a customer service representative, choose the most appropriate response", options=["Sorry for the inconvenience caused. We'll do our best to resolve the issue shortly.", "It's not our fault. You should have read the terms and conditions more carefully.", "That's not my department. You need to speak with someone else."]) # best to worst (by index): 0, 1, 2
     
     # item 2
     st.write("Scenario 2: {insert scenario here}, what would you say?")
-    m_speak_choice_2 = st.radio(label='You are in a group discussion, and a team member continuously interrupts and dominates the conversation. How would you respond?', options=["Say: Excuse me, but you're talking too much. Let others have a chance to speak.",  "Say: I appreciate your enthusiasm, but it would be beneficial to hear other perspectives as well.", "(Let them continue what they're saying)"])
+    m_speak_choice_2 = st.radio(label='You are in a group discussion, and a team member continuously interrupts and dominates the conversation. How would you respond?', options=["Say: Excuse me, but you're talking too much. Let others have a chance to speak.",  "Say: I appreciate your enthusiasm, but it would be beneficial to hear other perspectives as well.", "(Let them continue what they're saying)"]) # best to worst (by index): 1, 0, 2
     
     # item 3
-    m_speak_choice_3 = st.radio(label='You are in a team meeting and a colleague presents an idea that you strongly disagree with. What would you say?', options=["I think that idea won't work because...", "I appreciate your perspective, although I have different viewpoint on this because...", "I think your idea is completely off-track, the project's goal is to..."])
+    m_speak_choice_3 = st.radio(label='You are in a team meeting and a colleague presents an idea that you strongly disagree with. What would you say?', options=["I think that idea won't work because...", "I appreciate your perspective, although I have different viewpoint on this because...", "I think your idea is completely off-track, the project's goal is to..."]) # best to worst (by index): 1, 0, 2
 
     m_speak = 1 + 1 # final m_speak value, placeholder value before making proper equation for it
 
@@ -159,16 +159,16 @@ elif st.session_state['Current Page'] == 3:
     st.write("MENTAL ALERTNESS")
 
     st.write("Alice and Bob have 420 cookies together. Bob has three times more cookies than Alice, how many cookies does he have?")
-    m_mental_choice_1 = st.radio(label="Choices", options=["105", "210", "315", "None of These"])
+    m_mental_choice_1 = st.radio(label="Choices", options=["105", "210", "315", "None of These"]) # answer: 315
 
     st.write("Observe the pattern below:")
     st.info("64 | 60 | 58 | 52 | 44 | X")
     st.write("Which number can replace your X?")
-    m_mental_choice_2 = st.radio(label="Choices", options=["36", "30", "40", "28"])
+    m_mental_choice_2 = st.radio(label="Choices", options=["36", "30", "40", "28"]) # answer: 30
 
     st.info('"DESPITE" | "IN SPITE OF"')
     st.write("The use of these phrases are...")
-    m_mental_choice_3 = st.radio(label="Choices", options=["Opposite", "Similar", "Unrelated to Each Other", "None of the Above"])
+    m_mental_choice_3 = st.radio(label="Choices", options=["Opposite", "Similar", "Unrelated to Each Other", "None of the Above"]) # answer: Similar
 
     m_mental = 1 + 1 # final m_mental value, placeholder value before making proper equation for it
 
@@ -184,7 +184,7 @@ elif st.session_state['Current Page'] == 4:
     
     # item
     st.write("How confident do you see yourself?")
-    m_conf = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much", "Definitely!"))
+    m_conf = st.select_slider(label = "Slide to the prompt that best describes you", options=("I wish I am", "Somewhat", "Pretty much!", "Definitely!"))
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -195,13 +195,13 @@ elif st.session_state['Current Page'] == 5:
     st.write("ABILITY TO PRESENT IDEAS")
 
     st.write("Which of the following is an essential component of a well-structured presentation?")
-    m_ideas_choice_1 = st.radio(label="Choices", options = ["Clear introduction", "Engaging visual aids", "Concise conclusion", "All of the above"])
+    m_ideas_choice_1 = st.radio(label="Choices", options = ["Clear introduction", "Engaging visual aids", "Concise conclusion", "All of the above"]) # Answer: All of the Above
 
-    st.write("What is the recommended way to maintain audience engagement during a presentation?")
-    m_ideas_choice_2 = st.radio(label="Choices", options = ["Use interactive activities", "Incorporate storytelling techniques", "Ask thought-provoking questions", "All of the above"])
+    st.write("What is one of the recommended ways to maintain audience engagement during a presentation?")
+    m_ideas_choice_2 = st.radio(label="Choices", options = ["Use interactive activities", "Incorporate storytelling techniques", "Be controversial with your ideas", "None of the above"]) # Answer: "Incorporate storytelling techniques"
 
     st.write("You notice that some audience members appear disengaged during your presentation. What should you do?")
-    m_ideas_choice_3 = st.radio(label="Choices", options = ["Increase your volume and speak louder", "Use more complex technical terms to grab their attention", "Pause and ask a question to encourage participation", "Ignore them and continue with your presentation"])
+    m_ideas_choice_3 = st.radio(label="Choices", options = ["Increase your volume and speak louder to make them hear you", "Use more complex technical terms to grab their attention", "Pause and ask a question to encourage participation", "Ignore them and continue with your presentation for those who are actually listening"]) # Answer: Pause and ask a question to encourage participation
 
     m_ideas = 1 + 1 #temp values muna, will polish later
 
@@ -213,11 +213,11 @@ elif st.session_state['Current Page'] == 5:
 elif st.session_state['Current Page'] == 6:
     st.write("COMMUNICATION SKILLS")
 
-    m_comm_choice_1 = st.radio(label="Which of the following is an essential component of effective communication?", options=["Active listening", "Speaking slowly", "Superior vocabulary", "Using complex vocabulary"])
+    m_comm_choice_1 = st.radio(label="Which of the following is an essential component of effective communication?", options=["Active listening", "Speaking slowly", "Superior vocabulary", "Using complex vocabulary"]) # Answer: Active Listening
 
-    m_comm_choice_2 = st.radio(label="How would you handle a situation where you receive an email with unclear instructions?", options=["Ignore the email and wait for clarification.", "Reply with your best guess.", "Seek clarification by asking specific questions.", "Reply with any response to buy time."])
+    m_comm_choice_2 = st.radio(label="How would you handle a situation where you receive an email with unclear instructions?", options=["Ignore the email and wait for clarification.", "Reply with your best guess.", "Seek clarification by asking specific questions.", "Reply with any response to buy time."]) # Answer: Seek clarification by asking specific questions.
 
-    m_comm_choice_3 = st.radio(label="How would you handle a disagreement with a colleague during a team meeting?", options=["Assert your opinion.", "Keep listening and avoid conflict.", "Listen to their perspective and express your viewpoint respectfully.", "Tell the issue to a supervisor."])
+    m_comm_choice_3 = st.radio(label="How would you handle a disagreement with a colleague during a team meeting?", options=["Assert your opinion.", "Keep listening and avoid conflict.", "Listen to their perspective and express your viewpoint respectfully.", "Tell the issue to a supervisor."]) # Answer:  "Listen to their perspective and express your viewpoint respectfully."
 
     m_comm = 1 + 1
 
@@ -230,7 +230,7 @@ elif st.session_state['Current Page'] == 7:
     st.write("STUDENT PERFORMANCE RATING")
 
     st.write("According to your University/School Record, what's your current GWA?")
-    m_phys = st.select_slider(label = "Slide to the range that fits you", options=("3.00-2.50", "2.50-2.00", "2.00-1.50", "1.50-1.00")) #Note: need to find a better range OR a test something else for this
+    m_phys = st.select_slider(label = "Slide to the range that fits you", options=("3.00-2.50", "2.50-1.50", "1.50-1.00"))
 
     back_button = st.button(label="Back",on_click=prev)
     submit_button = st.button(label="Submit", on_click=next)

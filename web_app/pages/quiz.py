@@ -469,9 +469,9 @@ elif st.session_state['Current Page'] == 7:
     st.session_state['Scores'][7] = 0
     match m_phys:
         case "below 3.00":
-            st.session_state['Scores'][7] = 2
-        case "3.00-2.50":
             st.session_state['Scores'][7] = 3
+        case "3.00-2.50":
+            st.session_state['Scores'][7] = 4
         case "2.50-1.50":
             st.session_state['Scores'][7] = 4
         case "1.50-1.00":

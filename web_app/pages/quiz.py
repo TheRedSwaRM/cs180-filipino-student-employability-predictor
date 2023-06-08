@@ -191,7 +191,7 @@ if st.session_state['Current Page'] == 0:
         case "Casual Wear":
             st.session_state['Scores'][0] += 3
     # Average the answers
-    st.session_state['Scores'][0] = math.round(st.session_state['Scores'][0] / 3)
+    st.session_state['Scores'][0] = math.ceil(st.session_state['Scores'][0] / 3)
     
     next_button = st.button(label="Next",on_click=next)
     
@@ -254,7 +254,7 @@ elif st.session_state['Current Page'] == 1:
         case "I think your idea is completely off-track, the project's goal is to...":
             st.session_state['Scores'][1] += 3
     # Average the answers
-    st.session_state['Scores'][1] = math.round(st.session_state['Scores'][1] / 3)
+    st.session_state['Scores'][1] = math.ceil(st.session_state['Scores'][1] / 3)
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)

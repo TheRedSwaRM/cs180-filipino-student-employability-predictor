@@ -134,7 +134,7 @@ def reset_quiz():
 
 # GENERAL APPEARANCE - 0
 if st.session_state['Current Page'] == 0:
-    st.write("GENERAL APPEARANCE")
+    # st.write("GENERAL APPEARANCE")
     
     st.info("For clothing references, please see the images on the right")
     app_col1, app_col2, app_col3 = st.columns([0.40, 0.3,0.3])
@@ -148,7 +148,7 @@ if st.session_state['Current Page'] == 0:
     
         # item 2
         m_app_choice_2 = st.radio(
-            label='In a Casual Interview at a coffee shop, that your interviewer will wear something Smart Casual',
+            label='In a Casual Interview at a coffee shop, knowing that your interviewer will wear something Smart Casual',
             options=["Business Casual Wear", "Casual Wear", "Formal Wear"]) # Best to Worst Answers: Business Casual Wear, Casual Wear, Formal Wear
 
         # item 3
@@ -199,7 +199,7 @@ if st.session_state['Current Page'] == 0:
 
 # MANNER OF SPEAKING - 1
 elif st.session_state['Current Page'] == 1:
-    st.write("MANNER OF SPEAKING")
+    # st.write("MANNER OF SPEAKING")
     # item 1
     m_speak_choice_1 = st.radio(
         label="You are addressing a customer complaint as a customer service representative, choose the most appropriate response",
@@ -261,7 +261,7 @@ elif st.session_state['Current Page'] == 1:
 
 # PHYSICAL CONDITION - 2
 elif st.session_state['Current Page'] == 2:
-    st.write("PHYSICAL CONDITION")
+    # st.write("PHYSICAL CONDITION")
     
     # item
     st.write("How physically fit do you see yourself?")
@@ -291,7 +291,7 @@ elif st.session_state['Current Page'] == 2:
  
 # MENTAL ALERTNESS - 3
 elif st.session_state['Current Page'] == 3:
-    st.write("MENTAL ALERTNESS")
+    # st.write("MENTAL ALERTNESS")
 
     st.write("Alice and Bob have 420 cookies together. Bob has three times more cookies than Alice, how many cookies does he have?")
     m_mental_choice_1 = st.radio(
@@ -345,7 +345,7 @@ elif st.session_state['Current Page'] == 3:
  
 # SELF CONFIDENCE - 4
 elif st.session_state['Current Page'] == 4:
-    st.write("SELF CONFIDENCE")
+    # st.write("SELF CONFIDENCE")
     
     # item
     st.write("How confident do you see yourself?")
@@ -376,7 +376,7 @@ elif st.session_state['Current Page'] == 4:
 
 # ABILITY TO PRESENT IDEAS - 5 
 elif st.session_state['Current Page'] == 5:
-    st.write("ABILITY TO PRESENT IDEAS")
+    # st.write("ABILITY TO PRESENT IDEAS")
 
     st.write("Which of the following is an essential component of a well-structured presentation?")
     m_ideas_choice_1 = st.radio(
@@ -425,7 +425,7 @@ elif st.session_state['Current Page'] == 5:
 
 # COMMUNICATION SKILLS - 6
 elif st.session_state['Current Page'] == 6:
-    st.write("COMMUNICATION SKILLS")
+    # st.write("COMMUNICATION SKILLS")
 
     m_comm_choice_1 = st.radio(
         label = "Which of the following is an essential component of effective communication?", 
@@ -471,7 +471,7 @@ elif st.session_state['Current Page'] == 6:
 
 # STUDENT PERFORMANCE RATING - 7
 elif st.session_state['Current Page'] == 7:
-    st.write("STUDENT PERFORMANCE RATING")
+    # st.write("STUDENT PERFORMANCE RATING")
 
     st.write("According to your University/School Record, what's your current GWA?")
     m_phys = st.select_slider(
@@ -503,7 +503,7 @@ elif st.session_state['Current Page'] == 7:
 elif st.session_state['Current Page'] == 8:
     st.write("YOUR RESULTS:")
     # predict here
-    st.session_state['Scores']
+    # st.session_state['Scores']
     
     
     results = predict_answers(
@@ -515,9 +515,9 @@ elif st.session_state['Current Page'] == 8:
         st.session_state['Scores'][5],
         st.session_state['Scores'][6],
         st.session_state['Scores'][7])
-    results
+    # print(st.session_state['Scores'])
     if results == 0:
-        st.header("Thank you for Taking our Quiz!")
+        st.header("Thank you for taking our Quiz!")
         st.divider()
         st.write("Unfortunately, according to our model, it looks like there are things you need to work on more... But don't worry! Our AI model is based on a dataset of only around 3000 entries and is not definitive of your full capabilities as a student")
         pass

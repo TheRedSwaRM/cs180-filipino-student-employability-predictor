@@ -12,6 +12,8 @@ import streamlit as st
 import numpy as np
 import pickle
 import math
+from sklearn.preprocessing import MinMaxScaler
+
 st.set_page_config(initial_sidebar_state="collapsed")
 
 # God didn't let me use enums. F*ck this sh*t.
@@ -53,8 +55,20 @@ def load_model():
     """
     return pickle.load(open("files/mlp_model.sav", 'rb'))
 
+@st.cache_resource
+def load_scaler():
+    """Loads model globally to lessen downtime during reloads.
+
+    Returns:
+        _scikit_model_: A saved model from previous training tests.
+    """
+    return pickle.load(open("files/best_scaler.sav", 'rb'))
+
+
 loaded_model = load_model()
-# loaded_scaler = insert saved scaler here
+loaded_scaler = load_scaler()
+
+
 
 def predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf):
     """Predicts the answers given 7 integer inputs, outputting a string that is either
@@ -73,7 +87,12 @@ def predict_answers(m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m
     Returns:
         str: The string prediction from the model.
     """
+    # Fits input data into a 2D Array
     features = np.array([[m_app, m_speak, m_phys, m_mental, m_conf, m_ideas, m_comm, m_perf]])
+    
+    # Normalizes input
+    features = loaded_scaler.transform(features)
+    
     return loaded_model.predict(features)[0]
 
 #============================
@@ -484,7 +503,9 @@ elif st.session_state['Current Page'] == 7:
 elif st.session_state['Current Page'] == 8:
     st.write("YOUR RESULTS:")
     # predict here
-    st.session_state
+    st.session_state['Scores']
+    
+    
     results = predict_answers(
         st.session_state['Scores'][0],
         st.session_state['Scores'][1],

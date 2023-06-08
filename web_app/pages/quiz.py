@@ -496,15 +496,15 @@ elif st.session_state['Current Page'] == 8:
         st.session_state['Scores'][7])
     results
     if results == 0:
-        # st.header("Looks like we need to work on ourselves a bit more")
-        # st.divider()
-        # st.write()
+        st.header("Thank you for Taking our Quiz!")
+        st.divider()
+        st.write("Unfortunately, according to our model, it looks like there are things you need to work on more... But don't worry! Our AI model is based on a dataset of only around 3000 entries and is not definitive of your full capabilities as a student")
         pass
         
     elif results == 1:
-        # st.header("Congratulations!")
-        # st.divider()
-        # st.write()
+        st.header("Congratulations!")
+        st.divider()
+        st.write("According to our AI model, you have been deemed employable! Keep up the good work in being you!")
         pass
     # "pretend" to load here
     # if-else statement showing the appropriate response wherein if employable, say something like "Congratulations! Looks like you have what it takes to get a job! Omi job!"

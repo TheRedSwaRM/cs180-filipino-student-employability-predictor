@@ -1,0 +1,100 @@
+\subsection{Methodology}
+\begin{frame}[fragile]
+\frametitle{Model input/features}
+	\begin{itemize}
+		\begin{multicols}{2}
+		\item \texttt{GENERAL APPEARANCE}
+		\item \texttt{MANNER OF SPEAKING}
+		\item \texttt{PHYSICAL CONDITION}
+		\item \texttt{MENTAL ALERTNESS}
+		\item \texttt{SELF-CONFIDENCE}
+		\item \texttt{ABILITY TO PRESENT IDEAS}
+		\item \texttt{COMMUNICATION SKILLS}
+		\item \texttt{Student Performance Rating}
+		\end{multicols}
+\begin{minted}{python}
+data = pd.read_excel('../data/Student-Employability-Datasets.xlsx')
+data = data.drop("Name of Student", axis=1)
+x = data.drop('CLASS', axis = 1)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Model output/target}
+	\begin{itemize}
+		\item \texttt{CLASS}
+		\begin{itemize}
+			\item \texttt{Employable}
+			\item \texttt{LessEmployable}
+		\end{itemize}
+\begin{minted}{python}
+y = data['CLASS']
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Splitting the data set into \texttt{train} and \texttt{test} sets using \texttt{train\_test\_split}
+\begin{minted}{python}
+#70% training and 30% testing
+x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.7)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Fit and transform the \texttt{x\_train} set using \texttt{scaler} from \texttt{MinMaxScaler}
+\begin{minted}{python}
+x_train = scaler.fit_transform(x_train)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Transform the \texttt{x\_test} set using \texttt{scaler} from \texttt{MinMaxScaler}
+\begin{minted}{python}
+x_test = scaler.transform(x_test)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Fit the \texttt{MLPClassifier} model with \texttt{tanh} activation for MLP using the \texttt{x\_train} and \texttt{y\_train} sets
+\begin{minted}{python}
+from sklearn.neural_network import MLPClassifier
+mlp = MLPClassifier(activation='tanh')
+mlp.fit(x_train,y_train)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Perform hyperparameter tuning on the model for better accuracy
+\begin{minted}{python}
+param_grid = {'hidden_layer_sizes': [8], 'max_iter': [20000], 'learning_rate_init': [0.01],'alpha':[0.001], 'activation': ['tanh']} 
+grid = GridSearchCV(mlp,param_grid,refit=True)
+grid.fit(x_train,y_train)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How the model works}
+	\begin{itemize}
+		\item Obtain predictions from using the model
+\begin{minted}{python}
+grid_predictions = grid.predict(x_test)
+\end{minted}
+	\end{itemize}
+\end{frame}

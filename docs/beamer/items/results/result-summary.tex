@@ -1,0 +1,84 @@
+\subsection{Summary of the results}
+\begin{frame}
+\frametitle{\subsecname}
+	\begin{itemize}
+		\item For the result summary, we will talk about the:
+		\begin{itemize}
+			\item Accuracy of the model
+			\item View of the confusion matrix
+			\item Classification Report
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Accuracy of the model}
+	\begin{itemize}
+		\item Upon using the Multilayer Perceptron to create predictions, we observed that the accuracy is around 87\% (exactly \texttt{0.8715083798882681}), as shown in the provided Python Notebook file.
+\begin{minted}{python}
+# Display accuracy
+from sklearn.metrics import accuracy_score
+grid_predictions = grid.predict(x_test)
+mlp_score = (accuracy_score(y_test, grid_predictions))
+print(mlp_score)
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{View of the confusion matrix}
+	\begin{itemize}
+		\item We view the confusion matrix as follows:
+			\wfigo[0.3]{confusion-matrix}
+		\item We can see that there are some edge cases that the model did not handle well, causing false negative and false positive classifications.
+		\item In this confusion matrix, the model has a bit more difficulty in classifying \texttt{LessEmployable}s than of \texttt{Employable}s.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{View of the confusion matrix}
+	\begin{itemize}
+		\item[] \begin{minted}{python}
+# Display the confusion matrix
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+mat = confusion_matrix(y_test, grid_predictions)
+sns.heatmap(mat, square=True, annot=True, fmt='d', cbar=False)
+plt.xlabel('Predicted value')
+plt.ylabel('True value')
+
+plt.show()
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Classification Report}
+	\begin{itemize}
+		\item We view the classification report as follows:
+\begin{minted}{text}
+              precision    recall  f1-score   support
+
+           0       0.86      0.82      0.84       366
+           1       0.88      0.91      0.89       529
+
+    accuracy                           0.87       895
+   macro avg       0.87      0.86      0.87       895
+weighted avg       0.87      0.87      0.87       895
+\end{minted}
+		\item We can see in the classification report that there is not that much of the difference between the two, although we can see in the \texttt{f1-score}s that classifying \texttt{Employable} students (presented as \texttt{1}) is a bit easier for the model to do than \texttt{LessEmployable} ones.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Classification Report}
+	\begin{itemize}
+	\item[] \begin{minted}{python}
+# Display classification report
+from sklearn.metrics import classification_report
+print(classification_report(y_test,grid_predictions))
+\end{minted}
+	\end{itemize}
+\end{frame}

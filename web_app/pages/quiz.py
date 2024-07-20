@@ -53,7 +53,7 @@ def load_model():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open("files/mlp_model.sav", 'rb'))
+    return pickle.load(open('files/mlp_model.sav', 'rb'))
 
 @st.cache_resource
 def load_scaler():
@@ -62,7 +62,7 @@ def load_scaler():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open("files/best_scaler.sav", 'rb'))
+    return pickle.load(open('files/best_scaler.sav', 'rb'))
 
 
 loaded_model = load_model()
@@ -167,29 +167,26 @@ if st.session_state['Current Page'] == 0:
     # God abandoned me this way.
     st.session_state['Scores'][0] = 0
     # First Answer
-    match m_app_choice_1: 
-        case "Semi-Formal Wear":
-            st.session_state['Scores'][0] += 4
-        case "Business Casual Wear":
-            st.session_state['Scores'][0] += 3
-        case "Formal Wear":
-            st.session_state['Scores'][0] += 5
+    if m_app_choice_1 == "Semi-Formal Wear":
+        st.session_state['Scores'][0] += 4
+    elif m_app_choice_1 == "Business Casual Wear":
+        st.session_state['Scores'][0] += 3
+    elif m_app_choice_1 == "Formal Wear":
+        st.session_state['Scores'][0] += 5
     # Second Answer
-    match m_app_choice_2:
-        case "Formal Wear":
-            st.session_state['Scores'][0] += 4
-        case "Business Casual Wear":
-            st.session_state['Scores'][0] += 5
-        case "Casual Wear":
-            st.session_state['Scores'][0] += 3
+    if m_app_choice_2 == "Formal Wear":
+        st.session_state['Scores'][0] += 4
+    elif m_app_choice_2 == "Business Casual Wear":
+        st.session_state['Scores'][0] += 5
+    elif m_app_choice_2 == "Casual Wear":
+        st.session_state['Scores'][0] += 3
     # Third Answer
-    match m_app_choice_3:
-        case "Semi-Formal Wear":
-            st.session_state['Scores'][0] += 4
-        case "Business Casual Wear":
-            st.session_state['Scores'][0] += 5
-        case "Casual Wear":
-            st.session_state['Scores'][0] += 3
+    if m_app_choice_3 == "Semi-Formal Wear":
+        st.session_state['Scores'][0] += 4
+    elif m_app_choice_3 == "Business Casual Wear":
+        st.session_state['Scores'][0] += 5
+    elif m_app_choice_3 == "Casual Wear":
+        st.session_state['Scores'][0] += 3
     # Average the answers
     st.session_state['Scores'][0] = math.ceil(st.session_state['Scores'][0] / 3)
     
@@ -230,29 +227,26 @@ elif st.session_state['Current Page'] == 1:
     # God abandoned me this way.
     st.session_state['Scores'][1] = 0
     # First Answer
-    match m_speak_choice_1: 
-        case "Sorry for the inconvenience caused. We'll do our best to resolve the issue shortly.":
-            st.session_state['Scores'][1] += 5
-        case "It's not our fault. You should have read the terms and conditions more carefully.":
-            st.session_state['Scores'][1] += 4
-        case "That's not my department. You need to speak with someone else.":
-            st.session_state['Scores'][1] += 3
+    if m_speak_choice_1 == "Sorry for the inconvenience caused. We'll do our best to resolve the issue shortly.":
+        st.session_state['Scores'][1] += 5
+    elif m_speak_choice_1 == "It's not our fault. You should have read the terms and conditions more carefully.":
+        st.session_state['Scores'][1] += 4
+    elif m_speak_choice_1 == "That's not my department. You need to speak with someone else.":
+        st.session_state['Scores'][1] += 3
     # Second Answer
-    match m_speak_choice_2:
-        case "Say: Excuse me, but you're talking too much. Let others have a chance to speak.":
-            st.session_state['Scores'][1] += 4
-        case "Say: I appreciate your enthusiasm, but it would be beneficial to hear other perspectives as well.":
-            st.session_state['Scores'][1] += 5
-        case "(Let them continue what they're saying)":
-            st.session_state['Scores'][1] += 3
+    if m_speak_choice_2 == "Say: Excuse me, but you're talking too much. Let others have a chance to speak.":
+        st.session_state['Scores'][1] += 4
+    elif m_speak_choice_2 == "Say: I appreciate your enthusiasm, but it would be beneficial to hear other perspectives as well.":
+        st.session_state['Scores'][1] += 5
+    elif m_speak_choice_2 == "(Let them continue what they're saying)":
+        st.session_state['Scores'][1] += 3
     # Third Answer
-    match m_speak_choice_3:
-        case "I think that idea won't work because...":
-            st.session_state['Scores'][1] += 4
-        case "I appreciate your perspective, although I have different viewpoint on this because...":
-            st.session_state['Scores'][1] += 5
-        case "I think your idea is completely off-track, the project's goal is to...":
-            st.session_state['Scores'][1] += 3
+    if m_speak_choice_3 == "I think that idea won't work because...":
+        st.session_state['Scores'][1] += 4
+    elif m_speak_choice_3 == "I appreciate your perspective, although I have different viewpoint on this because...":
+        st.session_state['Scores'][1] += 5
+    elif m_speak_choice_3 == "I think your idea is completely off-track, the project's goal is to...":
+        st.session_state['Scores'][1] += 3
     # Average the answers
     st.session_state['Scores'][1] = math.ceil(st.session_state['Scores'][1] / 3)
 
@@ -276,15 +270,14 @@ elif st.session_state['Current Page'] == 2:
         )
     # God abandoned me this way.
     st.session_state['Scores'][2] = 0
-    match m_phys:
-        case "not active much":
-            st.session_state['Scores'][2] = 2
-        case "I could improve myself":
-            st.session_state['Scores'][2] = 3
-        case "pretty okay":
-            st.session_state['Scores'][2] = 4
-        case "fit!":
-            st.session_state['Scores'][2] = 5
+    if m_phys == "not active much":
+        st.session_state['Scores'][2] = 2
+    elif m_phys == "I could improve myself":
+        st.session_state['Scores'][2] = 3
+    elif m_phys == "pretty okay":
+        st.session_state['Scores'][2] = 4
+    elif m_phys ==  "fit!":
+        st.session_state['Scores'][2] = 5
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -361,15 +354,14 @@ elif st.session_state['Current Page'] == 4:
 
     # God abandoned me this way.
     st.session_state['Scores'][4] = 0
-    match m_conf:
-        case "I wish I am":
-            st.session_state['Scores'][4] = 2
-        case "Somewhat":
-            st.session_state['Scores'][4] = 3
-        case "Pretty much!":
-            st.session_state['Scores'][4] = 4
-        case "Definitely!":
-            st.session_state['Scores'][4] = 5
+    if m_conf == "I wish I am":
+        st.session_state['Scores'][4] = 2
+    elif m_conf == "Somewhat":
+        st.session_state['Scores'][4] = 3
+    elif m_conf == "Pretty much!":
+        st.session_state['Scores'][4] = 4
+    elif m_conf == "Definitely!":
+        st.session_state['Scores'][4] = 5
 
     next_button = st.button(label="Next",on_click=next)
     back_button = st.button(label="Back",on_click=prev)
@@ -486,15 +478,14 @@ elif st.session_state['Current Page'] == 7:
 
     # God abandoned me this way.
     st.session_state['Scores'][7] = 0
-    match m_phys:
-        case "below 3.00":
-            st.session_state['Scores'][7] = 3
-        case "3.00-2.50":
-            st.session_state['Scores'][7] = 4
-        case "2.50-1.50":
-            st.session_state['Scores'][7] = 4
-        case "1.50-1.00":
-            st.session_state['Scores'][7] = 5
+    if m_phys == "below 3.00":
+        st.session_state['Scores'][7] = 3
+    elif m_phys == "3.00-2.50":
+        st.session_state['Scores'][7] = 4
+    elif m_phys == "2.50-1.50":
+        st.session_state['Scores'][7] = 4
+    elif m_phys == "1.50-1.00":
+        st.session_state['Scores'][7] = 5
 
     back_button = st.button(label="Back",on_click=prev)
     submit_button = st.button(label="Submit", on_click=next)

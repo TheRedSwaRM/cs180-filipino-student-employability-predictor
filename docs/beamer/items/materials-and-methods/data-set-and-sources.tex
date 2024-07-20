@@ -1,0 +1,43 @@
+\subsection{Data set and sources}
+\begin{frame}
+\frametitle{\subsecname}
+	\begin{itemize}
+		\item As previously stated in the project background, the data set used for the implementation of the project is the \textit{Students' Employability Dataset - Philippines} readily available from \textit{Kaggle}.
+		\item \url{https://www.kaggle.com/datasets/anashamoutni/students-employability-dataset}
+		\item Owned by \textit{Anas Hamoutni}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\subsecname}
+	\begin{itemize}
+		\item Notes about the data set (as shown from Kaggle):
+		\begin{itemize}
+			\item The data set was collected from different university agencies in the Philippines
+			\item The data set consists of mock job interview results of 2,982 observations.
+			\item However, the dataset collected requires normalization and cleaning.
+			\item The data set that was collected is compliant with the Data Privacy Act of the Philippines.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Data set format}
+	\begin{itemize}
+		\item The data set is in \texttt{.xlsx} (MS Excel Spreadsheet) format.
+		\item Can be imported using \texttt{read\_excel} from \texttt{pandas}.
+\begin{minted}{python}
+data = pd.read_excel('../data/Student-Employability-Datasets.xlsx')
+\end{minted}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data set as shown in MS Excel}
+\wfigo{dataset}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data set as shown in Python Notebook}
+\wfigo{pynb-dataset}
+\end{frame}

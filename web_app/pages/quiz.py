@@ -46,6 +46,8 @@ if 'Scores' not in st.session_state:
 # m_comm = 3
 # m_perf = 3
 
+global_location = "/mount/src/cs180-filipino-student-employability-predictor/web_app/"
+
 @st.cache_resource
 def load_model():
     """Loads model globally to lessen downtime during reloads.
@@ -53,7 +55,7 @@ def load_model():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open('/mount/src/cs180-filipino-student-employability-predictor/web_app/files/mlp_model.sav', 'rb'))
+    return pickle.load(open(global_location + 'files/mlp_model.sav', 'rb'))
 
 @st.cache_resource
 def load_scaler():
@@ -62,7 +64,7 @@ def load_scaler():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open('/mount/src/cs180-filipino-student-employability-predictor/web_app/files/best_scaler.sav', 'rb'))
+    return pickle.load(open(global_location + 'files/best_scaler.sav', 'rb'))
 
 
 loaded_model = load_model()

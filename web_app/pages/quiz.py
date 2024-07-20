@@ -53,7 +53,7 @@ def load_model():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open(r'web_app/files/mlp_model.sav', 'rb'))
+    return pickle.load(open('files/mlp_model.sav', 'rb'))
 
 @st.cache_resource
 def load_scaler():
@@ -62,7 +62,7 @@ def load_scaler():
     Returns:
         _scikit_model_: A saved model from previous training tests.
     """
-    return pickle.load(open(r'web_app/files/best_scaler.sav', 'rb'))
+    return pickle.load(open('files/best_scaler.sav', 'rb'))
 
 
 loaded_model = load_model()
@@ -157,12 +157,12 @@ if st.session_state['Current Page'] == 0:
             options=["Casual Wear", "Semi-Formal Wear", "Business Casual Wear"]) # Best to Worst Answers: Business Casual Wear, Semi-Formal Wear, Casual Wear
 
     with app_col2:
-        img1 = st.image(r"web_app/files/formal_clothing.png", width = 200, caption="Formal Wear")
-        img2 = st.image(r"web_app/files/semiformal_clothing.png", width = 200, caption="Semi-Formal Wear")
+        img1 = st.image("files/formal_clothing.png", width = 200, caption="Formal Wear")
+        img2 = st.image("files/semiformal_clothing.png", width = 200, caption="Semi-Formal Wear")
 
     with app_col3:
-        img3 = st.image(r"web_app/files/businesscasual_clothing.png", width = 200, caption="Business Casual Wear")
-        img4 = st.image(r"web_app/files/casual_clothing.png", width = 200, caption="Casual Wear")
+        img3 = st.image("files/businesscasual_clothing.png", width = 200, caption="Business Casual Wear")
+        img4 = st.image("files/casual_clothing.png", width = 200, caption="Casual Wear")
 
     # God abandoned me this way.
     st.session_state['Scores'][0] = 0

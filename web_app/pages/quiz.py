@@ -159,12 +159,12 @@ if st.session_state['Current Page'] == 0:
             options=["Casual Wear", "Semi-Formal Wear", "Business Casual Wear"]) # Best to Worst Answers: Business Casual Wear, Semi-Formal Wear, Casual Wear
 
     with app_col2:
-        img1 = st.image("files/formal_clothing.png", width = 200, caption="Formal Wear")
-        img2 = st.image("files/semiformal_clothing.png", width = 200, caption="Semi-Formal Wear")
+        img1 = st.image(global_location + "files/formal_clothing.png", width = 200, caption="Formal Wear")
+        img2 = st.image(global_location + "files/semiformal_clothing.png", width = 200, caption="Semi-Formal Wear")
 
     with app_col3:
-        img3 = st.image("files/businesscasual_clothing.png", width = 200, caption="Business Casual Wear")
-        img4 = st.image("files/casual_clothing.png", width = 200, caption="Casual Wear")
+        img3 = st.image(global_location + "files/businesscasual_clothing.png", width = 200, caption="Business Casual Wear")
+        img4 = st.image(global_location + "files/casual_clothing.png", width = 200, caption="Casual Wear")
 
     # God abandoned me this way.
     st.session_state['Scores'][0] = 0
